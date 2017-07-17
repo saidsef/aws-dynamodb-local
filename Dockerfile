@@ -12,7 +12,9 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends wget openjdk-8-jdk-headless
 
 RUN wget -O /tmp/dynamodb.tar.gz https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz
-RUN tar xfvz /tmp/dynamodb.tar.gz
+RUN tar xfvz /tmp/dynamodb.tar.gz && \
+    rm -fv /tmp/dynamodb.tar.gz && \
+    rm -rfv /var/cache/apt/*
 
 EXPOSE 8000
 
