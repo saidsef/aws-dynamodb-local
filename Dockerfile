@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM java:8-jre-alpine
 MAINTAINER Said Sef <said@saidsef.co.uk>
 
 LABEL "uk.co.saidsef.aws-dynamodb"="Said Sef Associates Ltd"
@@ -8,13 +8,11 @@ RUN mkdir -p /opt/dynamodb/db
 
 WORKDIR /opt/dynamodb
 
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends wget openjdk-8-jdk-headless
-
+RUN apk add --update wget
 RUN wget -O /tmp/dynamodb.tar.gz https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz
 RUN tar xfvz /tmp/dynamodb.tar.gz && \
     rm -fv /tmp/dynamodb.tar.gz && \
-    rm -rfv /var/cache/apt/*
+    rm -rfv /var/cache/apk/*
 
 EXPOSE 8000
 
