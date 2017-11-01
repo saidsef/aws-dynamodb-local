@@ -16,6 +16,4 @@ RUN tar xfvz /tmp/dynamodb.tar.gz && \
 
 EXPOSE 8000
 
-ENTRYPOINT ["java", "-Djava.library.path=.", "-jar", "DynamoDBLocal.jar", "-dbPath", "/opt/dynamodb/db"]
-
-CMD ["-port", "8000"]
+CMD ["java", "-Djava.library.path=.", "-jar", "DynamoDBLocal.jar", "-dbPath", "/opt/dynamodb/db", "-port", "8000"]
