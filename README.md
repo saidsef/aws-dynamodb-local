@@ -26,3 +26,9 @@ aws dynamodb create-table \
   --provisioned-throughput ReadCapacityUnits=2,WriteCapacityUnits=2 \
   --endpoint-url http://localhost:8000
 ```
+
+In the SDK set the client to:
+```shell
+    region: 'localhost',
+    endpoint: 'http://localhost:8000'
+```

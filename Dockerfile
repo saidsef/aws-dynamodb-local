@@ -11,11 +11,14 @@ ENV HOME /tmp
 
 WORKDIR /opt/dynamodb
 
-RUN apk add --update wget && \
+RUN apk add --no-cache --update wget && \
     wget -O /tmp/dynamodb.tar.gz https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz && \
     tar xfvz /tmp/dynamodb.tar.gz && \
+    apk del wget && \
     rm -fv /tmp/dynamodb.tar.gz && \
     rm -rfv /var/cache/apk/*
+
+VOLUME ["/opt/dynamodb/db"]
 
 EXPOSE $PORT
 CMD ["java", "-Djava.library.path=.", "-jar", "DynamoDBLocal.jar", "-dbPath", "/opt/dynamodb/db", "-port", "8000"]
