@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dynamodb
+  labels:
+    name: dynamodb
+    app: dynamodb
+spec:
+  serviceName: "dynamodb"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dynamodb
+  template:
+    metadata:
+      labels:
+        name: dynamodb
+        app: dynamodb
+    spec:
+      containers:
+        - image: saidsef/aws-dynamodb-local
+          name: dynamodb
+          ports:
+            - protocol: TCP
+              containerPort: 4567
+              name: dynamodb
+          volumeMounts:
+            - name: dynamodb-storage
+              mountPath: /data
+              subPath: data
+      volumes:
+        - name: dynamodb-storage
+          emptyDir: {}

@@ -1,8 +1,8 @@
-FROM java:8-alpine
+FROM openjdk:13-alpine
 MAINTAINER Said Sef <said@saidsef.co.uk>
 
 LABEL "uk.co.saidsef.aws-dynamodb"="Said Sef Associates Ltd"
-LABEL version="1.5"
+LABEL version="2.0"
 
 ARG PORT=""
 
@@ -18,7 +18,7 @@ RUN apk add --no-cache --update wget && \
     rm -fv /tmp/dynamodb.tar.gz && \
     rm -rfv /var/cache/apk/*
 
-VOLUME ["/opt/dynamodb/db"]
+VOLUME ["/data"]
 
-EXPOSE $PORT
-CMD ["java", "-Djava.library.path=.", "-jar", "DynamoDBLocal.jar", "-dbPath", "/opt/dynamodb/db", "-port", "8000"]
+EXPOSE ${PORT}
+CMD ["java", "-Djava.library.path=.", "-jar", "DynamoDBLocal.jar", "-dbPath", "/data", "-port", "8000"]

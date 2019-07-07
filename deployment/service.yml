@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dynamodb
+  labels:
+    name: dynamodb
+    app: dynamodb
+spec:
+  type: ClusterIP
+  selector:
+    app: dynamodb
+  ports:
+    - port: 4567
+      protocol: TCP
+      targetPort: 4567
+      name: dynamodb

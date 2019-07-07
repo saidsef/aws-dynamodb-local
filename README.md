@@ -11,6 +11,13 @@ Amazon DynamoDB is a fast and flexible NoSQL database service for all applicatio
  - OpenJDK v8
  - [AWS DynamoDB Local](https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz)
 
+## Kubernetes Deployment
+
+```bash
+kubectl apply -f deployment/
+
+```
+
 ## HowTo and Documentation
 
 ```shell
