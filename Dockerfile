@@ -15,6 +15,7 @@ RUN apk add --no-cache --update wget && \
     wget -O /tmp/dynamodb.tar.gz https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz && \
     tar xfvz /tmp/dynamodb.tar.gz && \
     apk del wget && \
+    mkdir -p /data && \
     rm -fv /tmp/dynamodb.tar.gz && \
     rm -rfv /var/cache/apk/*
 
