@@ -1,4 +1,4 @@
-FROM openjdk:13-alpine
+FROM java:8-alpine
 MAINTAINER Said Sef <said@saidsef.co.uk>
 
 LABEL "uk.co.saidsef.aws-dynamodb"="Said Sef Associates Ltd"
