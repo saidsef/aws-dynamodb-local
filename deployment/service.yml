@@ -11,7 +11,7 @@ spec:
   selector:
     app: dynamodb
   ports:
-    - port: 4567
+    - port: 8000
       protocol: TCP
-      targetPort: 4567
+      targetPort: 8000
       name: dynamodb

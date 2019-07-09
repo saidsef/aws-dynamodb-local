@@ -23,7 +23,7 @@ spec:
           name: dynamodb
           ports:
             - protocol: TCP
-              containerPort: 4567
+              containerPort: 8000
               name: dynamodb
           volumeMounts:
             - name: dynamodb-storage
