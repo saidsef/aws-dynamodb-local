@@ -24,11 +24,17 @@ Or, to deploy via argocd:
 kubectl apply -f argocd/argocd-application.yml
 ```
 
-## HowTo and Documentation
+```shell
+aws --endpoint-url=http://pod-ip dynamodb list-tables --region local
+```
+
+## Docker Deployment
 
 ```shell
 docker run -d -p 8000:8000 saidsef/aws-dynamodb-local
 ```
+
+## HowTo and Documentation
 
 ```shell
 aws dynamodb create-table \
