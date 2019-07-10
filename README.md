@@ -21,7 +21,7 @@ kubectl apply -f deployment/
 Or, to deploy via argocd:
 
 ```bash
-kubectl apply -f deployment/argocd-application.yml
+kubectl apply -f argocd/argocd-application.yml
 ```
 
 ## HowTo and Documentation
