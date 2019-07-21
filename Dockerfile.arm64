@@ -1,0 +1,17 @@
+FROM arm64v8/openjdk:8-alpine
+MAINTAINER Said Sef <said@saidsef.co.uk>
+
+LABEL "uk.co.saidsef.aws-dynamodb"="Said Sef Associates Ltd"
+LABEL version="2.5"
+
+WORKDIR /app
+
+RUN apk add -U curl
+RUN curl -L https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz -o dynamodb_local_latest.tar.gz && \
+    tar xvf dynamodb_local_latest.tar.gz && \
+    rm -fv dynamodb_local_latest.tar.gz
+
+EXPOSE 8000/tcp
+
+CMD ["-jar", "DynamoDBLocal.jar", "-inMemory"]
+ENTRYPOINT ["/usr/bin/java"]
