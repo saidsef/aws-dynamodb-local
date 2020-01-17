@@ -16,7 +16,6 @@ install:
 before_script:
   - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 script:
-  - cd function/
   - |
    if [ $TRAVIS_BRANCH == "master" ]; then
      export TAG="latest"
