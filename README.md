@@ -14,7 +14,7 @@ Amazon DynamoDB is a fast and flexible NoSQL database service for all applicatio
 ## Kubernetes Deployment
 
 ```bash
-kubectl apply -f deployment/
+kubectl apply -k deployment/
 
 ```
 
