@@ -33,6 +33,9 @@ spec:
             - name: dynamodb-storage
               mountPath: /data
               subPath: data
+          livenessProbe:
+            tcpSocket:
+                port: 8000
       volumes:
         - name: dynamodb-storage
           emptyDir: {}
