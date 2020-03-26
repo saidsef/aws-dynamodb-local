@@ -8,8 +8,8 @@ Amazon DynamoDB is a fast and flexible NoSQL database service for all applicatio
 
 ## Components
 
- - OpenJDK v8
- - [AWS DynamoDB Local](https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz)
+- OpenJDK v8+
+- [AWS DynamoDB Local](https://s3-us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz)
 
 ## Kubernetes Deployment
 
@@ -47,6 +47,7 @@ aws dynamodb create-table \
 ```
 
 In the SDK set the client to:
+
 ```shell
     region: 'localhost',
     endpoint: 'http://localhost:8000'
