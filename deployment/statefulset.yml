@@ -29,13 +29,20 @@ spec:
             - protocol: TCP
               containerPort: 8000
               name: dynamodb
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 100m
+            limits:
+              memory: 512Mi
+              cpu: 200m
           volumeMounts:
             - name: dynamodb-storage
               mountPath: /data
               subPath: data
           livenessProbe:
             tcpSocket:
-                port: 8000
+              port: 8000
       volumes:
         - name: dynamodb-storage
           emptyDir: {}
