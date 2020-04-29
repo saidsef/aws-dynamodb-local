@@ -7,6 +7,9 @@ metadata:
     name: dynamodb
     app: dynamodb
 spec:
+  revisionHistoryLimit: 1
+  updateStrategy:
+    type: RollingUpdate
   serviceName: "dynamodb"
   replicas: 1
   selector:
@@ -21,8 +24,10 @@ spec:
         name: dynamodb
         app: dynamodb
     spec:
+      terminationGracePeriodSeconds: 60
+      restartPolicy: Always
       containers:
-        - image: saidsef/aws-dynamodb-local
+        - image: saidsef/aws-dynamodb-local:latest
           imagePullPolicy: Always
           name: dynamodb
           ports:
@@ -54,7 +59,6 @@ spec:
             initialDelaySeconds: 10
             successThreshold: 1
             periodSeconds: 3
-            
       volumes:
         - name: dynamodb-storage
           emptyDir: {}
