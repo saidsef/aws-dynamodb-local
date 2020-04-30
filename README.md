@@ -25,7 +25,7 @@ kubectl apply -f argocd/argocd-application.yml
 ```
 
 ```shell
-aws --endpoint-url=http://pod-ip dynamodb list-tables --region local
+aws --endpoint-url=http://svc-ip dynamodb list-tables --region local
 ```
 
 ## Docker Deployment
