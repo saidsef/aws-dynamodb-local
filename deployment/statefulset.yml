@@ -29,6 +29,7 @@ spec:
       containers:
         - image: saidsef/aws-dynamodb-local:latest
           imagePullPolicy: Always
+          tty: true
           name: dynamodb
           ports:
             - protocol: TCP
