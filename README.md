@@ -21,17 +21,17 @@ kubectl apply -k deployment/
 Or, to deploy via argocd:
 
 ```bash
-kubectl apply -f argocd/argocd-application.yml
+kubectl apply -f argocd/application.yml
 ```
 
 ```shell
-aws --endpoint-url=http://svc-ip dynamodb list-tables --region local
+aws --endpoint-url=http://dynamodb.[namespace].svc dynamodb list-tables --region local
 ```
 
 ## Docker Deployment
 
 ```shell
-docker run -d -p 8000:8000 saidsef/aws-dynamodb-local
+docker run -d -p 8000:8000 docker.io/saidsef/aws-dynamodb-local:latest
 ```
 
 ## HowTo and Documentation
