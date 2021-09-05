@@ -6,9 +6,16 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "Dockerfile"
+      - ".github/workflows/docker.yml"
   pull_request:
     branches:
       - master
+    paths:
+      - "Dockerfile"
+      - ".github/workflows/docker.yml"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,16 +31,20 @@ jobs:
         platforms: all
     - name: Set up Docker Buildx
       id: buildx
+      if: success()
       uses: docker/setup-buildx-action@v1
       env:
         DOCKER_BUILDKIT: 1
     - name: Login to DockerHub
       uses: docker/login-action@v1
+      if: success()
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Build and push Docker image (${{ env.TAG }})
+    - name: Build and push Docker image (TAG)
       uses: docker/build-push-action@v2
+      if: success()
+      id: dockerbuild
       env:
         DOCKER_BUILDKIT: 1
       with:
@@ -41,9 +52,11 @@ jobs:
         context: .
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64
-        push: true
+        pull: true
+        push: false
+        outputs: tag=${{ env.TAG == 'master' && 'latest' || env.TAG }}
         tags: docker.io/saidsef/aws-dynamodb-local:${{ env.TAG == 'master' && 'latest' || env.TAG }}
-    - name: Build and push Docker image (${{ env.TAG }})
+    - name: Build and push Docker image (DATE)
       uses: docker/build-push-action@v2
       if: ${{ contains(github.ref, 'master') }}
       env:
@@ -53,17 +66,21 @@ jobs:
         context: .
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64
-        push: true
+        pull: true
+        push: false
+        output: tag=${{ env.DATE }}
         tags: docker.io/saidsef/aws-dynamodb-local:${{ env.DATE }}
-    - name: Run Trivy vulnerability scanner
+    - name: Run Trivy vulnerability scanner - ${{ steps.dockerbuild.outputs.tag }}
       uses: aquasecurity/trivy-action@master
+      if: success()
       with:
-        image-ref: docker.io/saidsef/aws-dynamodb-local:${{ env.TAG == 'master' && 'latest' || env.TAG }}
+        image-ref: docker.io/saidsef/aws-dynamodb-local:${{ steps.dockerbuild.outputs.tag }}
         format: 'template'
         template: '@/contrib/sarif.tpl'
         output: 'trivy-results.sarif'
-    - name: Upload Trivy scan results to GitHub Security tab
+    - name: Upload Trivy scan results to GitHub Security tab - ${{ steps.dockerbuild.outputs.tag }}
       uses: github/codeql-action/upload-sarif@v1
+      if: success()
       with:
         sarif_file: 'trivy-results.sarif'
 
@@ -73,7 +90,7 @@ jobs:
     if: ${{ ! contains(github.ref, 'master') }}
     steps:
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1
+        uses: helm/kind-action@v1.2.0
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run K8s test
