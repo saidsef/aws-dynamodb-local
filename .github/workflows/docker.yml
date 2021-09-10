@@ -99,3 +99,14 @@ jobs:
           kubectl create namespace $NS
           kubectl apply -n $NS -k deployment/
           kubectl get all -n $NS
+
+  auto-approve:
+    runs-on: ubuntu-latest
+    needs: [build, k8s-test]
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - uses: hmarr/auto-approve-action@v2
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
