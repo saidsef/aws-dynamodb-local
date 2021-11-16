@@ -13,6 +13,8 @@ on:
     paths:
       - "Dockerfile"
       - ".github/workflows/docker.yml"
+  schedule:
+    - cron: '0 07 1 * *'
 
 jobs:
   build:
