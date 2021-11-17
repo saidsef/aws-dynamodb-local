@@ -3,13 +3,13 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - "Dockerfile"
       - ".github/workflows/docker.yml"
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - "Dockerfile"
       - ".github/workflows/docker.yml"
