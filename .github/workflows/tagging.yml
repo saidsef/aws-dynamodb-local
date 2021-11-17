@@ -8,6 +8,8 @@ on:
       - CI
     types:
       - completed
+    branch:
+      - main
   workflow_dispatch:
 
 jobs:
