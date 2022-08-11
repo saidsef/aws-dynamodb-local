@@ -7,6 +7,6 @@ resources:
 - service.yml
 
 images:
-  - name: dynamodb
-    newName: docker.io/saidsef/aws-dynamodb-local
-    newTag: latest
+- name: dynamodb
+  newName: docker.io/saidsef/aws-dynamodb-local
+  newTag: latest

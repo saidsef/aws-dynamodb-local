@@ -2,7 +2,7 @@ name: Tagging
 on:
   push:
     branches:
-      - master
+      - main
   workflow_run:
     workflows:
       - CI
@@ -15,7 +15,7 @@ on:
 jobs:
   tagging:
     runs-on: ubuntu-latest
-    if: ${{ contains(github.ref, 'master') }}
+    if: ${{ contains(github.ref, 'main') }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
