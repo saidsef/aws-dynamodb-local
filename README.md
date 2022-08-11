@@ -43,7 +43,7 @@ aws dynamodb create-table \
     AttributeName=id,AttributeType=S --key-schema \
     AttributeName=id,KeyType=HASH \
   --provisioned-throughput ReadCapacityUnits=2,WriteCapacityUnits=2 \
-  --endpoint-url http://localhost:8000
+  --endpoint-url http://dynamodb.[namespace].svc
 ```
 
 In the SDK set the client to:
