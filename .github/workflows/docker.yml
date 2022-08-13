@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set Tag Name
       run: |
-        echo "TAG=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
+        echo "TAG=${{ github.head_ref || github.ref_name }}" >> $GITHUB_ENV
         echo "DATE=v$(echo `date +'%Y.%m'`)" >> $GITHUB_ENV
     - name: Set up QEMU
       uses: docker/setup-qemu-action@master
@@ -86,7 +86,7 @@ jobs:
     if: ${{ ! contains(github.ref, 'main') }}
     steps:
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.2.0
+        uses: helm/kind-action@v1.3.0
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run K8s test
