@@ -13,8 +13,6 @@ on:
     paths:
       - "Dockerfile"
       - ".github/workflows/docker.yml"
-  schedule:
-    - cron: '0 07 1 * *'
 
 jobs:
   build:
@@ -81,7 +79,6 @@ jobs:
       if: success()
       with:
         sarif_file: 'trivy-results.sarif'
-
   k8s-test:
     runs-on: ubuntu-latest
     needs: [build]
@@ -101,7 +98,6 @@ jobs:
           kubectl create namespace $NS
           kubectl apply -n $NS -k deployment/
           kubectl get all -n $NS
-
   auto-approve:
     runs-on: ubuntu-latest
     needs: [build, k8s-test]
