@@ -26,7 +26,7 @@ jobs:
           echo "DATE=${DATE}" >> $GITHUB_ENV
           echo "TAG=$(echo `git tag -l ${DATE}`)" >> $GITHUB_ENV
       - name: Create Release
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         id: release
         if: ${{ env.TAG }}
         with:
@@ -59,7 +59,7 @@ jobs:
             return release_id
 
       - name: Upload Release Assets
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         if: ${{ steps.release.outputs.result }}
         with:
           github-token: ${{ github.token }}
