@@ -28,6 +28,10 @@ spec:
       restartPolicy: Always
       containers:
         - image: docker.io/saidsef/aws-dynamodb-local:latest
+          args:
+            - "-sharedDb"
+            - "-dbPath"
+            - "/data"
           imagePullPolicy: Always
           tty: true
           name: dynamodb
