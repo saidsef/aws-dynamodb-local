@@ -1,6 +1,6 @@
 # Docker DynamoDB Local [![CI](https://github.com/saidsef/aws-dynamodb-local/actions/workflows/docker.yml/badge.svg)](#kubernetes-deployment) [![Tagging](https://github.com/saidsef/aws-dynamodb-local/actions/workflows/tagging.yml/badge.svg)](#kubernetes-deployment) [![Release](https://github.com/saidsef/aws-dynamodb-local/actions/workflows/release.yml/badge.svg)](#kubernetes-deployment)
 
-Build for local AWS DynamoDB
+Build for [local AWS DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html)
 
 ## AWS DynameDB
 
