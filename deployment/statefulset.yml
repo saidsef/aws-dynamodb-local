@@ -39,6 +39,19 @@ spec:
           imagePullPolicy: Always
           tty: true
           name: dynamodb
+          env:
+          - name: AWS_DEFAULT_REGION
+            value: "local"
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: AWS_ENDPOINT_URL
+            value: $(POD_NAME).$(NAMESPACE)
           ports:
             - protocol: TCP
               containerPort: 8000
