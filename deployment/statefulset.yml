@@ -25,12 +25,13 @@ spec:
         app: dynamodb
     spec:
       terminationGracePeriodSeconds: 60
+      automountServiceAccountToken: false
+      enableServiceLinks: false
       restartPolicy: Always
       securityContext:
         runAsGroup: 1000
         runAsUser: 1000
         runAsNonRoot: true
-        readOnlyRootFilesystem: true
         seccompProfile:
           type: RuntimeDefault
       containers:
@@ -74,25 +75,27 @@ spec:
             - name: storage
               mountPath: /data
               subPath: data
+              readOnly: false
           livenessProbe:
             tcpSocket:
-              port: dynamodb
+              port: 8000
             initialDelaySeconds: 5
-            periodSeconds: 3
+            periodSeconds: 5
             successThreshold: 1
             failureThreshold: 2
-            timeoutSeconds: 1
+            timeoutSeconds: 3
           readinessProbe:
             tcpSocket:
-              port: dynamodb
+              port: 8000
             initialDelaySeconds: 5
-            periodSeconds: 3
+            periodSeconds: 5
             successThreshold: 1
             failureThreshold: 2
-            timeoutSeconds: 1
+            timeoutSeconds: 3
           securityContext:
             allowPrivilegeEscalation: false
             privileged: false
+            readOnlyRootFilesystem: true
             capabilities:
              drop:
                - ALL
