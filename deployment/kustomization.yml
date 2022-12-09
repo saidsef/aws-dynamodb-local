@@ -6,7 +6,11 @@ resources:
 - statefulset.yml
 - service.yml
 
+commonAnnotations:
+  app.kubernetes.io/name: dynamodb
+  app.kubernetes.io/part-of: dynamodb
+
 images:
 - name: dynamodb
   newName: docker.io/saidsef/aws-dynamodb-local
-  newTag: latest
+  newTag: v2022.10
