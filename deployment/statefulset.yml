@@ -19,7 +19,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "8000"
+        prometheus.io/port: "8081"
       labels:
         name: dynamodb
         app: dynamodb
@@ -35,15 +35,7 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-        - image: docker.io/saidsef/aws-dynamodb-local:v2022.10
-          command:
-          - "java"
-          args:
-          - "-jar"
-          - "DynamoDBLocal.jar"
-          - "-sharedDb"
-          - "-dbPath"
-          - "/data"
+        - image: docker.io/saidsef/aws-dynamodb-local:v2023.03
           imagePullPolicy: Always
           tty: true
           name: dynamodb
@@ -64,6 +56,9 @@ spec:
             - protocol: TCP
               containerPort: 8000
               name: dynamodb
+            - protocol: TCP
+              containerPort: 8081
+              name: prometheus
           resources:
             requests:
               memory: 512Mi
@@ -78,19 +73,19 @@ spec:
               readOnly: false
           livenessProbe:
             tcpSocket:
-              port: 8000
+              port: dynamodb
             initialDelaySeconds: 5
             periodSeconds: 5
             successThreshold: 1
-            failureThreshold: 2
+            failureThreshold: 3
             timeoutSeconds: 3
           readinessProbe:
             tcpSocket:
-              port: 8000
+              port: dynamodb
             initialDelaySeconds: 5
             periodSeconds: 5
             successThreshold: 1
-            failureThreshold: 2
+            failureThreshold: 3
             timeoutSeconds: 3
           securityContext:
             allowPrivilegeEscalation: false
@@ -99,8 +94,7 @@ spec:
             capabilities:
              drop:
                - ALL
-             add:
-               - NET_BIND_SERVICE
       volumes:
         - name: storage
-          emptyDir: {}
+          emptyDir:
+            sizeLimit: 2Gi

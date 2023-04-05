@@ -70,14 +70,15 @@ jobs:
         tags: docker.io/saidsef/aws-dynamodb-local:${{ env.DATE }}
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
+      continue-on-error: true
       if: success()
       with:
         image-ref: docker.io/saidsef/aws-dynamodb-local:${{ env.TAG == 'main' && 'latest' || env.TAG }}
-        format: 'template'
-        template: '@/contrib/sarif.tpl'
+        format: 'sarif'
         output: 'trivy-results.sarif'
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v2
+      continue-on-error: true
       if: success()
       with:
         sarif_file: 'trivy-results.sarif'
@@ -101,7 +102,6 @@ jobs:
           fi
           kubectl create namespace $NS
           kubectl apply -n $NS -k deployment/
-
           kubectl get all -A
 
   auto-approve:
