@@ -13,4 +13,4 @@ commonAnnotations:
 images:
 - name: dynamodb
   newName: docker.io/saidsef/aws-dynamodb-local
-  newTag: v2022.10
+  newTag: v2023.03

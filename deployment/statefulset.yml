@@ -35,7 +35,7 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-        - image: docker.io/saidsef/aws-dynamodb-local:v2022.10
+        - image: docker.io/saidsef/aws-dynamodb-local:v2023.03
           command:
           - "java"
           args:
