@@ -102,7 +102,6 @@ jobs:
           fi
           kubectl create namespace $NS
           kubectl apply -n $NS -k deployment/
-
           kubectl get all -A
 
   auto-approve:
