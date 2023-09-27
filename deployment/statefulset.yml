@@ -4,8 +4,7 @@ kind: StatefulSet
 metadata:
   name: dynamodb
   labels:
-    name: dynamodb
-    app: dynamodb
+    app.kubernetes.io/name: dynamodb
 spec:
   revisionHistoryLimit: 1
   updateStrategy:
@@ -14,15 +13,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dynamodb
+      app.kubernetes.io/name: dynamodb
   template:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8081"
       labels:
-        name: dynamodb
-        app: dynamodb
+        app.kubernetes.io/name: dynamodb
     spec:
       terminationGracePeriodSeconds: 60
       automountServiceAccountToken: false
@@ -35,7 +33,7 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-        - image: docker.io/saidsef/aws-dynamodb-local:v2023.03
+        - image: docker.io/saidsef/aws-dynamodb-local:v2023.09
           imagePullPolicy: Always
           tty: true
           name: dynamodb
@@ -74,7 +72,7 @@ spec:
           livenessProbe:
             tcpSocket:
               port: dynamodb
-            initialDelaySeconds: 5
+            initialDelaySeconds: 10
             periodSeconds: 5
             successThreshold: 1
             failureThreshold: 3
