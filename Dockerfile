@@ -3,9 +3,9 @@ FROM docker.io/amazon/dynamodb-local
 LABEL maintainer="Said Sef <said@saidsef.co.uk> (saidsef.co.uk/)"
 
 LABEL "uk.co.saidsef.aws-dynamodb"="Said Sef Associates Ltd"
-LABEL VERSION="1.21.0"
+LABEL VERSION="1.22.0"
 
-ENV PROMETHEUS_JMX_JAR_VERSION 0.18.0
+ENV PROMETHEUS_JMX_JAR_VERSION 0.20.0
 
 WORKDIR /home/dynamodblocal
 

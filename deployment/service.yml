@@ -4,12 +4,12 @@ kind: Service
 metadata:
   name: dynamodb
   labels:
-    name: dynamodb
-    app: dynamodb
+    app.kubernetes.io/name: dynamodb
 spec:
   type: ClusterIP
+  clusterIP: None
   selector:
-    app: dynamodb
+    app.kubernetes.io/name: dynamodb
   ports:
     - port: 80
       protocol: TCP
