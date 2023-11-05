@@ -74,7 +74,7 @@ spec:
           livenessProbe:
             tcpSocket:
               port: dynamodb
-            initialDelaySeconds: 5
+            initialDelaySeconds: 10
             periodSeconds: 5
             successThreshold: 1
             failureThreshold: 3
@@ -82,7 +82,7 @@ spec:
           readinessProbe:
             tcpSocket:
               port: dynamodb
-            initialDelaySeconds: 5
+            initialDelaySeconds: 10
             periodSeconds: 5
             successThreshold: 1
             failureThreshold: 3
