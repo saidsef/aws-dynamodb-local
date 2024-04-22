@@ -10,4 +10,4 @@ resources:
 images:
 - name: dynamodb
   newName: docker.io/saidsef/aws-dynamodb-local
-  newTag: v2023.09
+  newTag: v2024.02
