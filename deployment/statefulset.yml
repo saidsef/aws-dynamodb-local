@@ -33,7 +33,7 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-        - image: docker.io/saidsef/aws-dynamodb-local:v2023.09
+        - image: docker.io/saidsef/aws-dynamodb-local:v2024.02
           imagePullPolicy: Always
           tty: true
           name: dynamodb
