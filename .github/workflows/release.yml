@@ -8,7 +8,7 @@ on:
       - Tagging
     types:
       - completed
-    branch:
+    branches:
       - main
   workflow_dispatch:
 
@@ -39,11 +39,10 @@ jobs:
             let release_id = 0;
             try {
               const release = await github.rest.repos.createRelease({
-                owner, repo,
+                owner,
+                repo,
                 tag_name: tag,
-                title: tag,
-                draft: false,
-                target_commitish: sha
+                generate_release_notes: true
               });
               release_id = release.data.id;
             } catch (e) {
