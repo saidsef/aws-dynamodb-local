@@ -1,0 +1,6 @@
+apiVersion: v2
+name: dynamodb
+description: A Helm chart for DynamoDB in Kubernetes
+type: application
+version: &version 0.1.0
+appVersion: *version
