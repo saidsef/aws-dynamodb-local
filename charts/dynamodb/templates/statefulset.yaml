@@ -6,9 +6,8 @@ metadata:
     {{- include "dynamodb.labels" . | nindent 4 }}
 spec:
   revisionHistoryLimit: 1
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  serviceName: {{ include "dynamodb.fullname" . }}
   selector:
     matchLabels:
       {{- include "dynamodb.selectorLabels" . | nindent 6 }}
@@ -25,7 +24,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceName: {{ include "dynamodb.fullname" . }}
       serviceAccountName: {{ include "dynamodb.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -37,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8000
               protocol: TCP
           livenessProbe:
             httpGet:
