@@ -4,7 +4,7 @@ LABEL maintainer="Said Sef <said@saidsef.co.uk> (saidsef.co.uk/)"
 
 LABEL "uk.co.saidsef.aws-dynamodb"="Said Sef Associates Ltd"
 
-ENV PROMETHEUS_JMX_JAR_VERSION 0.20.0
+ENV PROMETHEUS_JMX_JAR_VERSION="0.20.0"
 
 USER root
 
