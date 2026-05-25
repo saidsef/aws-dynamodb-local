@@ -3,6 +3,44 @@ entries:
   dynamodb:
   - annotations:
       artifacthub.io/changes: |
+        - kind: security
+          description: Patch OS-level CVEs by running apt-get upgrade in Dockerfile
+        - kind: security
+          description: Suppress unfixable AWS-bundled JAR CVEs via .trivyignore
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: README
+          url: https://github.com/saidsef/aws-dynamodb-local/blob/main/README.md
+        - name: LICENSE
+          url: https://github.com/saidsef/aws-dynamodb-local/blob/main/LICENSE.md
+        - name: CONTRIBUTING
+          url: https://github.com/saidsef/aws-dynamodb-local/blob/main/CONTRIBUTING.md
+    apiVersion: v2
+    appVersion: 2026.5.1
+    created: "2026-05-25T23:07:04.875414628Z"
+    description: A DynamoDB Local Helm chart for Kubernetes
+    digest: 2e092df784e45f7705fb191621277f112705bb240b3d8276ebafb828735413f5
+    home: https://github.com/saidsef/aws-dynamodb-local
+    icon: https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Database/DynamoDB.png
+    keywords:
+    - dynamodb
+    - aws
+    - local
+    - kubernetes
+    kubeVersion: '>= 1.23'
+    maintainers:
+    - email: saidsef@gmail.com
+      name: Said Sef
+      url: https://saidsef.co.uk/
+    name: dynamodb
+    sources:
+    - https://github.com/saidsef/aws-dynamodb-local.git
+    type: application
+    urls:
+    - https://github.com/saidsef/aws-dynamodb-local/releases/download/dynamodb-2026.5.1/dynamodb-2026.5.1.tgz
+    version: 2026.5.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Added Chart documentation
       artifacthub.io/license: MIT
@@ -37,4 +75,4 @@ entries:
     urls:
     - https://github.com/saidsef/aws-dynamodb-local/releases/download/dynamodb-2026.5.0/dynamodb-2026.5.0.tgz
     version: 2026.5.0
-generated: "2026-05-25T12:25:46.968636772Z"
+generated: "2026-05-25T23:07:04.875422469Z"
