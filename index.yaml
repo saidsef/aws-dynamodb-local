@@ -1,0 +1,40 @@
+apiVersion: v1
+entries:
+  dynamodb:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: Added Chart documentation
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: README
+          url: https://github.com/saidsef/aws-dynamodb-local/blob/main/README.md
+        - name: LICENSE
+          url: https://github.com/saidsef/aws-dynamodb-local/blob/main/LICENSE.md
+        - name: CONTRIBUTING
+          url: https://github.com/saidsef/aws-dynamodb-local/blob/main/CONTRIBUTING.md
+    apiVersion: v2
+    appVersion: 2026.5.0
+    created: "2026-05-25T12:25:46.968630891Z"
+    description: A DynamoDB Local Helm chart for Kubernetes
+    digest: 7f08874f509a265af45c244881dc1d44e3b846f2e7d866b3aae18f31b75302d9
+    home: https://github.com/saidsef/aws-dynamodb-local
+    icon: https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Database/DynamoDB.png
+    keywords:
+    - dynamodb
+    - aws
+    - local
+    - kubernetes
+    kubeVersion: '>= 1.23'
+    maintainers:
+    - email: saidsef@gmail.com
+      name: Said Sef
+      url: https://saidsef.co.uk/
+    name: dynamodb
+    sources:
+    - https://github.com/saidsef/aws-dynamodb-local.git
+    type: application
+    urls:
+    - https://github.com/saidsef/aws-dynamodb-local/releases/download/dynamodb-2026.5.0/dynamodb-2026.5.0.tgz
+    version: 2026.5.0
+generated: "2026-05-25T12:25:46.968636772Z"
