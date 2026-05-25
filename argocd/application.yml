@@ -5,9 +5,9 @@ metadata:
   name: aws-dynamodb
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: kinesis=docker.io/saidsef/aws-kinesis-local
-    argocd-image-updater.argoproj.io/kinesis.force-update: "true"
-    argocd-image-updater.argoproj.io/kinesis.update-strategy: latest
+    argocd-image-updater.argoproj.io/image-list: dynamodb=docker.io/saidsef/aws-dynamodb-local
+    argocd-image-updater.argoproj.io/dynamodb.force-update: "true"
+    argocd-image-updater.argoproj.io/dynamodb.update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -19,7 +19,7 @@ spec:
   source:
     path: deployment
     repoURL: https://github.com/saidsef/aws-dynamodb-local.git
-    targetRevision: master
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true

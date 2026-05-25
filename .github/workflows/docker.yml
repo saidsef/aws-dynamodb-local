@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v6
     - name: Set Tag Name
       run: |
-        echo "TAG=${{ github.head_ref || github.ref_name }}" >> $GITHUB_ENV
+        echo "TAG=$(echo '${{ github.head_ref || github.ref_name }}' | tr '/' '-')" >> $GITHUB_ENV
         echo "DATE=v$(echo `date +'%Y.%m'`)" >> $GITHUB_ENV
     - name: Set up QEMU
       uses: docker/setup-qemu-action@master
@@ -95,7 +95,7 @@ jobs:
       - name: Run K8s test
         run: |
           kubectl cluster-info
-          kubectl version --short
+          kubectl version
           export NS=`cat deployment/kustomization.yml  | grep namespace | awk '{ print $2 }'`
           if [ -z "$NS" ]; then
             export NS='data'
