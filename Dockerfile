@@ -8,7 +8,7 @@ ENV PROMETHEUS_JMX_JAR_VERSION 0.20.0
 
 USER root
 
-RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN dnf upgrade -y && dnf clean all
 
 USER dynamodblocal
 
