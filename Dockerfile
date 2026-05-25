@@ -6,6 +6,12 @@ LABEL "uk.co.saidsef.aws-dynamodb"="Said Sef Associates Ltd"
 
 ENV PROMETHEUS_JMX_JAR_VERSION 0.20.0
 
+USER root
+
+RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+USER dynamodblocal
+
 WORKDIR /home/dynamodblocal
 
 COPY prometheus-jmx-config.yaml /home/dynamodblocal/
