@@ -1,4 +1,4 @@
-FROM docker.io/amazon/dynamodb-local:3.3.0
+FROM docker.io/amazon/dynamodb-local:3.3.1
 
 LABEL maintainer="Said Sef <said@saidsef.co.uk> (saidsef.co.uk/)"
 
